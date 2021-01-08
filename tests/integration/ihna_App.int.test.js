@@ -36,6 +36,7 @@ describe('Integreation test for IHNA App controllers : ' + endpointUrl, () => {
       expect(response.body.IHNA_App).toBeDefined()
       expect(response.body.IHNA_CalendarWorker).toBeDefined()
       expect(response.body.IHNA_CalendarService).toBeDefined()
+      expect(response.body.IHNA_MessengerService).toBeDefined()
     })
   })
 })
