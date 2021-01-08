@@ -1,4 +1,4 @@
-const Controller = require('../../src/controllers/calendar_service.controller')
+const Controller = require('../../src/controllers/ihna_app.controller')
 const Utils = require("../../src/utils")
 const httpMocks = require('node-mocks-http')
 const packageJson = require('../mock/mock_package.json')
@@ -33,11 +33,11 @@ describe('Get information', () => {
   })
 
   it('Should return name and version in response', async () => {
-    Utils.packageParseInformation.mockReturnValue({name: "ihna_calendarservice", version: "1.0.0"})
+    Utils.packageParseInformation.mockReturnValue({name: "ihna_app", version: "1.0.0"})
 
     await Controller.getInformation(req, res, next)
 
-    expect(res._getJSONData()).toStrictEqual({name: "ihna_calendarservice", version: "1.0.0"})
+    expect(res._getJSONData()).toStrictEqual({name: "ihna_app", version: "1.0.0"})
   })
 
   it('Should handle errors', async () => {

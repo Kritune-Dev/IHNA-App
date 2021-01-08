@@ -1,4 +1,4 @@
-# IHNA_CalendarService
-[![Node CI](https://github.com/CorentinBacconnais/IHNA_CalendarService/workflows/Node%20CI/badge.svg)](https://github.com/CorentinBacconnais/IHNA_CalendarService/actions)
+# IHNA_App
+[![Node CI](https://github.com/CorentinBacconnais/IHNA_App/workflows/Node%20CI/badge.svg)](https://github.com/CorentinBacconnais/IHNA_App/actions)
 
-> Allows you to search the calendar by day/week or even make specific searches in the calendar (particular courses, teachers etc...).
+> "The whole program and allows the visualization of the different states of the applications"

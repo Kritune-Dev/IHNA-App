@@ -15,7 +15,7 @@ afterAll((done) => {
   server.close(done)
 })
 
-describe('Integreation test for Calendar Service controllers : ' + endpointUrl, () => {
+describe('Integreation test for IHNA App controllers : ' + endpointUrl, () => {
   describe('GET methode with ' + endpointUrl, () => {
     it('Should GET' + endpointUrl + " return informations with name and version", async () => {
       const response = await request

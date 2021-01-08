@@ -1,7 +1,7 @@
 {
-  "name": "ihna_calendarservice",
+  "name": "ihna_app",
   "version": "1.0.0",
-  "description": "Allows you to search the calendar by day/week or even make specific searches in the calendar (particular courses, teachers etc...).",
+  "description": "The whole program and allows the visualization of the different states of the applications",
   "main": "src/server.js",
   "scripts": {
     "lint:check": "eslint .",
@@ -17,8 +17,9 @@
   },
   "keywords": [
     "IHNA",
-    "service",
-    "calendar"
+    "App",
+    "Centralisation",
+    "Service"
   ],
   "author": "Kritune",
   "license": "ISC",
