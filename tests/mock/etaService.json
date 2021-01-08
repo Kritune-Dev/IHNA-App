@@ -1,0 +1,5 @@
+{
+    "IHNA_App" : {"name" : "IHNA_App", "Version" : "1.0.0"},
+    "IHNA_CalendarWorker" : {"name": "IHNA_CalendarWorker", "Version" : "1.0.0", "Working" : true},
+    "IHNA_CalendarServive" : {"name": "IHNA_CalendarWorker", "Version" : "1.0.0", "Working" : true}
+  }

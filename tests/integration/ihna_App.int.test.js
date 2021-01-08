@@ -26,4 +26,16 @@ describe('Integreation test for IHNA App controllers : ' + endpointUrl, () => {
       expect(response.body.version).toBeDefined()
     })
   })
+
+  describe('GET methode with ' + endpointUrl + '/about', () => {
+    it('Should GET' + endpointUrl + "/about return informations of all service with name and version", async () => {
+      const response = await request
+        .get(endpointUrl + "/About")
+      
+      expect(response.statusCode).toBe(200)
+      expect(response.body.IHNA_App).toBeDefined()
+      expect(response.body.IHNA_CalendarWorker).toBeDefined()
+      expect(response.body.IHNA_CalendarService).toBeDefined()
+    })
+  })
 })

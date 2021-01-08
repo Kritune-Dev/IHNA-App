@@ -1,9 +1,11 @@
 const Controller = require('../../src/controllers/ihna_app.controller')
 const Utils = require("../../src/utils")
 const httpMocks = require('node-mocks-http')
-const packageJson = require('../mock/mock_package.json')
+const packageInformation = require('../../package.json')
+const etaService = require('../mock/etaService')
 
 Utils.packageParseInformation = jest.fn()
+Utils.callService = jest.fn()
 
 let req, res, next
 
@@ -13,40 +15,68 @@ beforeEach(() => {
   next = jest.fn()
 })
 
-describe('Get information', () => {
+describe('IHNA_App unit test', () => {
+  describe('Get information', () => {
+    it('Should have a getInformation function', () => {
+      expect(typeof Controller.getInformation).toBe('function')
+    })
 
-  it('Should have a getInformation function', () => {
-    expect(typeof Controller.getInformation).toBe('function')
+    it('Should call packageParseInformation()', () => {
+      Controller.getInformation(req, res, next)
+
+      expect(Utils.packageParseInformation).toBeCalledWith(packageInformation)
+    })
+
+    it('Should return 200 response code', async () => {
+      await Controller.getInformation(req, res, next)
+
+      expect(res.statusCode).toBe(200)
+      expect(res._isEndCalled()).toBeTruthy()
+    })
+
+    it('Should return name and version in response', async () => {
+      Utils.packageParseInformation.mockReturnValue({name: "ihna_app", version: "1.0.0"})
+
+      await Controller.getInformation(req, res, next)
+
+      expect(res._getJSONData()).toStrictEqual({name: "ihna_app", version: "1.0.0"})
+    })
+
+    it('Should handle errors', async () => {
+      const errorMessage = {message: "Error finding"}
+      const rejectedPromise = Promise.reject(errorMessage)
+      Utils.packageParseInformation.mockReturnValue(rejectedPromise)
+
+      await Controller.getInformation(req, res, next)
+
+      expect(next).toBeCalledWith(errorMessage)
+    })
   })
 
-  it('Should call packageParseInformation()', () => {
-    Controller.getInformation(req, res, next)
+  describe('Get information betwenn different services', () => {
+    it('Should have a getEtaService function', () => {
+      expect(typeof Controller.getEtaService).toBe('function')
+    })
 
-    expect(Utils.packageParseInformation).toBeCalledWith(packageJson)
-  })
+    it('Should call callService() and packageParseInformation()', () => {
+      Controller.getEtaService(req, res, next)
 
-  it('Should return 200 response code', async () => {
-    await Controller.getInformation(req, res, next)
+      expect(Utils.packageParseInformation).toBeCalledWith(packageInformation)
+      expect(Utils.callService).toBeCalledWith(expect.anything())
+    })
 
-    expect(res.statusCode).toBe(200)
-    expect(res._isEndCalled()).toBeTruthy()
-  })
+    it('Should return 200 response code', async () => {
+      await Controller.getEtaService(req, res, next)
 
-  it('Should return name and version in response', async () => {
-    Utils.packageParseInformation.mockReturnValue({name: "ihna_app", version: "1.0.0"})
+      expect(res.statusCode).toBe(200)
+    })
 
-    await Controller.getInformation(req, res, next)
+    it('Should return name and version in response', async () => {
+      Utils.packageParseInformation.mockReturnValue(etaService)
 
-    expect(res._getJSONData()).toStrictEqual({name: "ihna_app", version: "1.0.0"})
-  })
+      await Controller.getInformation(req, res, next)
 
-  it('Should handle errors', async () => {
-    const errorMessage = {message: "Error finding"}
-    const rejectedPromise = Promise.reject(errorMessage)
-    Utils.packageParseInformation.mockReturnValue(rejectedPromise)
-
-    await Controller.getInformation(req, res, next)
-
-    expect(next).toBeCalledWith(errorMessage)
+      expect(res._getJSONData()).toStrictEqual(etaService)
+    })
   })
 })
