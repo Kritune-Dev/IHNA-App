@@ -31,4 +31,4 @@ jobs:
             cd ~/IHNA/IHNA_App/
             git pull
             npm install
-            pm2 restart IHNA_App
+            pm2 restart Application
