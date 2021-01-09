@@ -2,7 +2,7 @@ const packageInformation = require('../../package.json')
 const utils = require('../utils')
 
 const ihna_CalendarService = 'http://212.227.203.247:1901/api/CalendarService'
-const ihna_MessengerService = 'http://212.227.203.247:1901/api/MessengerService'
+const ihna_MessengerService = 'http://212.227.203.247:1905/api/MessengerService'
 const ihna_CalendarWorker = 'http://212.227.203.247:1902/api/CalendarWorker'
 
 exports.getInformation = async (req, res, next) => {
