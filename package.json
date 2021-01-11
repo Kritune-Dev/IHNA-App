@@ -1,6 +1,6 @@
 {
   "name": "ihna_app",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The whole program and allows the visualization of the different states of the applications",
   "main": "src/server.js",
   "scripts": {
