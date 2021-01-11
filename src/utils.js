@@ -3,7 +3,7 @@ const axios = require('axios')
 exports.packageParseInformation= (packageJson) => {
   const uptime = getUptime()
   const revision = getGitCommit()
-  return {name: packageJson.name, version: packageJson.version, uptime: uptime, revision: revision}
+  return {name: packageJson.name, version: packageJson.version, working: true, uptime: uptime, revision: revision}
 }
 
 String.prototype.toHHMMSS = function () {
