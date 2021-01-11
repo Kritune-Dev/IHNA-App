@@ -7,7 +7,7 @@ app.use(express.json())
 app.use('/api/App', ihnaAppRoutes)
 
 app.use((error, req, res) => {
-    res.status(500).json({message: error.message})
+  res.status(500).json({message: error.message})
 })
 
 module.exports = app

@@ -1,17 +1,45 @@
 const axios = require('axios')
 
 exports.packageParseInformation= (packageJson) => {
-    return {name: packageJson.name, version: packageJson.version}
+  const uptime = getUptime()
+  const revision = getGitCommit()
+  return {name: packageJson.name, version: packageJson.version, uptime: uptime, revision: revision}
+}
+
+String.prototype.toHHMMSS = function () {
+  var sec_num = parseInt(this, 10) // don't forget the second param
+  var hours = Math.floor(sec_num / 3600)
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60)
+  var seconds = sec_num - (hours * 3600) - (minutes * 60)
+
+  if (hours < 10) {hours = '0'+hours}
+  if (minutes < 10) {minutes = '0'+minutes}
+  if (seconds < 10) {seconds = '0'+seconds}
+  var time = hours+':'+minutes+':'+seconds
+  return time
+}
+
+function getUptime () {
+  var time = process.uptime()
+  var uptime = (time + '').toHHMMSS()
+  return uptime
+}
+
+function getGitCommit() {
+  var revision = require('child_process')
+    .execSync('git rev-parse HEAD')
+    .toString().trim()
+  return revision
 }
 
 exports.callService = (urlService) => {
-    return new Promise((resolve, reject) => {
-        axios.get(urlService)
-        .then(response => {
-            resolve({name: response.data.name, version: response.data.version, working: true})
-        })
-        .catch(error => {
-            reject(error)
-        })
-    })
+  return new Promise((resolve, reject) => {
+    axios.get(urlService)
+      .then(response => {
+        resolve({name: response.data.name, version: response.data.version, working: true, uptime: response.data.uptime})
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
 }

@@ -1,18 +1,19 @@
 const packageInformation = require('../../package.json')
 const utils = require('../utils')
+require('dotenv').config()
 
-const ihna_CalendarService = 'http://212.227.203.247:1901/api/CalendarService'
-const ihna_MessengerService = 'http://212.227.203.247:1905/api/MessengerService'
-const ihna_CalendarWorker = 'http://212.227.203.247:1902/api/CalendarWorker'
+const ihna_CalendarService = process.env.CALENDAR_SERVICE
+const ihna_MessengerService = process.env.MESSENGER_SERVICE
+const ihna_CalendarWorker = process.env.CALENDAR_WORKER
 
 exports.getInformation = async (req, res, next) => {
-    try {
-      const packageJson = await utils.packageParseInformation(packageInformation)
-      res.status(200).json(packageJson)
-    } catch (error) {
-      next(error)
-    }
+  try {
+    const packageJson = await utils.packageParseInformation(packageInformation)
+    res.status(200).json(packageJson)
+  } catch (error) {
+    next(error)
   }
+}
 
 exports.getEtaService = async (req, res, next) => {
   try {
