@@ -50,7 +50,7 @@ jobs:
       APP_SERVICE: ${{ secrets.APP_SERVICE }}
       MESSENGER_SERVICE: ${{ secrets.MESSENGER_SERVICE }}
       CALENDAR_WORKER: ${{ secrets.CALENDAR_WORKER }}
-      APP_SERVICE: ${{ secrets.CALENDAR_SERVICE }}
+      CALENDAR_SERVICE: ${{ secrets.CALENDAR_SERVICE }}
 
     steps:
       - name: Checkout 🛎️
