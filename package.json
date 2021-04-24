@@ -23,7 +23,7 @@
   "author": "Kritune",
   "license": "ISC",
   "dependencies": {
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^26.0.22",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "eslint-plugin-jest": "^24.1.3",
